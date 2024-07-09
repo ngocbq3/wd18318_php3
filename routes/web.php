@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +42,28 @@ Route::prefix('admin')->group(function () {
     Route::get('/category', function () {
         return "CATEGORY";
     });
+});
+
+//Posts
+Route::get('/posts', function () {
+    // $posts = DB::table('posts')->get();
+    //Lấy ra title và view
+    // $posts = DB::table('posts')
+    //     ->select('title', 'view')
+    //     ->limit(10)
+    //     ->get();
+    //Lấy ra tất cả bài viết có lượt xem (view) > 500
+    // $posts = DB::table('posts')
+    //     ->where('view', '>', 500)
+    //     ->get();
+    //JOIN categories và posts
+    $posts = DB::table('posts')
+        ->join('categories', 'cate_id', 'categories.id')
+        ->get();
+    dd($posts);
+});
+
+Route::get('/posts-list', function () {
+    $posts = DB::table('posts')->get();
+    return view('products', compact('posts'));
 });

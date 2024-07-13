@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -77,3 +78,5 @@ Route::get('/detail/{id}', function ($id) {
     $post = DB::table('posts')->where('id', $id)->first();
     return $post;
 })->name('post.detail');
+
+Route::get('/category/list', [CategoryController::class, 'index'])->name('category.index');

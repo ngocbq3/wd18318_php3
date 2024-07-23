@@ -11,7 +11,7 @@
 
 <body>
     <h1>Thêm mới bài viết</h1>
-    <a href="{{ route('post.index') }}" class="btn btn-primay">Danh sách</a>
+    <a href="{{ route('post.index') }}" class="btn btn-primary">Danh sách</a>
 
     <div class="container">
         <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">

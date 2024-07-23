@@ -19,6 +19,11 @@
                 <th scope="col">description</th>
                 <th scope="col">View</th>
                 <th scope="col">Cate</th>
+                <th scope="col">
+                    <a href="" class="btn btn-primary">
+                        Thêm mới
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody>

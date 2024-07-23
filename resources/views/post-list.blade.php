@@ -20,7 +20,7 @@
                 <th scope="col">View</th>
                 <th scope="col">Cate</th>
                 <th scope="col">
-                    <a href="" class="btn btn-primary">
+                    <a href="{{ route('post.create') }}" class="btn btn-primary">
                         Thêm mới
                     </a>
                 </th>
@@ -36,7 +36,16 @@
                     </td>
                     <td>{{ $post->description }}</td>
                     <td>{{ $post->view }}</td>
-                    <td>{{ $post->cate_id }}</td>
+                    <td>{{ $post->category->name }}</td>
+                    <td class="d-flex">
+                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-primary me-1">Edit</a>
+                        <form action="{{ route('post.destroy', $post) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Bạn có muốn xóa không')" type="submit"
+                                class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
 

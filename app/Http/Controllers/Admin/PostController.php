@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -63,6 +64,8 @@ class PostController extends Controller
 
         //xóa bài viết có id = 101
         // Post::find(101)->delete();
+
+        // dd(Auth::user());
         $posts = Post::paginate(10);
         return view('post-list', compact('posts'));
     }

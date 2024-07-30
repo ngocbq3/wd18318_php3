@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\LoginController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,7 +86,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/category/list', [CategoryController::class, 'index'])->name('category.index');
 
 
-Route::prefix('admin')->group(function () {
+Route::middleware(AdminMiddleware::class)->prefix('admin')->group(function () {
     Route::get('post/list', [PostController::class, 'index'])->name('post.index');
     Route::get('post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('post/create', [PostController::class, 'store'])->name('post.store');
@@ -91,3 +94,9 @@ Route::prefix('admin')->group(function () {
     Route::put('post/edit/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 });
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::get('/register', [LoginController::class, 'register'])->name('register');
+Route::post('/register', [LoginController::class, 'postRegister'])->name('postRegister');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

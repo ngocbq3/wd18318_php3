@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePost;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ class PostController extends Controller
     }
 
     //Phương thức lưu dữ liệu thêm vào database
-    public function store(Request $request)
+    public function store(StorePost $request)
     {
         $data = $request->except('image');
         $data['image'] = "";
